@@ -1,180 +1,138 @@
-# RecoverMyWeb - Chrome Extension
+# RecoverMyWeb 🔒
 
-Chrome Extension to track and restore incognito window tabs, persisting across Chrome restarts.
+**Never lose your incognito tabs again.**
 
-## Features
+A Chrome extension that saves and restores your incognito window tabs - because accidentally closing that window with 20+ research tabs shouldn't ruin your day.
 
-- **Automatic Tracking**: Monitors all tabs in incognito windows
-- **Persistent Storage**: Survives Chrome restarts using chrome.storage.local
-- **One-Click Restore**: Restore all tabs from last incognito session
-- **Clean UI**: Simple popup interface
-- **Smart Filtering**: Excludes chrome:// and extension URLs
-- **Auto-Save**: Saves snapshots every 5 seconds while window is open
+![RecoverMyWeb](icon.png)
 
-## Installation
+## 😫 The Problem
 
-### Option 1: Load Unpacked Extension (Development)
+You know the pain:
+- **Researching in incognito mode** with 15+ tabs open
+- **Accidentally close the window** (wrong X button, keyboard shortcut mishap)
+- **All your tabs are gone forever** - no history, no recovery
+- **Start over from scratch** trying to remember what you were looking at
 
-1. **Create Icon** (Required):
-   - Convert `icon.svg` to PNG format at these sizes:
-     - 128x128 pixels
-     - 48x48 pixels
-     - 16x16 pixels
-   - Use an online converter like [SVG to PNG Converter](https://svgtopng.com/)
-   - Save all as `icon.png` (Chrome will use the appropriate size)
-   - OR use any 128x128 PNG icon and rename it to `icon.png`
+Chrome's built-in session restore doesn't work for incognito windows. Your tabs just... vanish.
 
-2. **Open Chrome Extensions**:
+## ✨ The Solution
+
+RecoverMyWeb gives you a safety net:
+- **One-click save** your current incognito session
+- **One-click restore** all tabs exactly as they were
+- **Survives Chrome restarts** - your saved sessions persist
+- **Simple & fast** - no bloat, just works
+
+## 🚀 Installation
+
+### Option 1: Chrome Web Store (Coming Soon)
+*Pending review*
+
+### Option 2: Load Unpacked (Now)
+
+1. **Download this repo**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/recovermyweb.git
+   ```
+
+2. **Open Chrome Extensions**
    - Navigate to `chrome://extensions/`
-   - Enable "Developer mode" (toggle in top-right)
+   - Enable "Developer mode" (top-right toggle)
 
-3. **Load Extension**:
+3. **Load Extension**
    - Click "Load unpacked"
-   - Select the `C:\recovermyweb` directory
-   - Extension should appear in toolbar
+   - Select the `recovermyweb` folder
+   - Done!
 
-### Option 2: Package as .crx (Distribution)
+## 📖 How to Use
 
-1. Create icon as described above
-2. In `chrome://extensions/`, click "Pack extension"
-3. Select the `C:\recovermyweb` directory
-4. Chrome will generate `.crx` file for distribution
+### Save Your Session
+1. Open incognito window with tabs you want to save
+2. Click the RecoverMyWeb icon in your toolbar
+3. Click **"Save Current Session"**
+4. ✅ Session saved!
 
-## Usage
+### Restore Your Tabs
+1. Click the RecoverMyWeb icon
+2. You'll see how many tabs were saved and when
+3. Click **"Restore All Tabs"**
+4. ✅ New incognito window opens with all your tabs!
 
-1. **Open Incognito Window**:
-   - Press `Ctrl+Shift+N` (Windows/Linux) or `Cmd+Shift+N` (Mac)
-   - Open multiple tabs as needed
+### Clear Saved Session
+- Click the RecoverMyWeb icon → **"Clear Snapshot"**
 
-2. **Close Incognito Window**:
-   - Extension automatically saves snapshot
+## 🎯 Features
 
-3. **Restore Tabs**:
-   - Click RecoverMyWeb icon in toolbar
-   - Click "Restore All Tabs"
-   - New incognito window opens with all tabs
+- ✅ **Manual save** - Save your incognito tabs with one click
+- ✅ **Quick restore** - Recover all tabs in seconds
+- ✅ **Persistent storage** - Sessions survive Chrome restarts
+- ✅ **Tab order preserved** - Tabs restore in the exact order you saved them
+- ✅ **Pinned tabs** - Pinned state is preserved
+- ✅ **Smart filtering** - Automatically skips `chrome://` system pages
+- ✅ **Clean UI** - Simple, intuitive interface
+- ✅ **Privacy-focused** - All data stays local, no cloud sync
 
-## File Structure
+## 🔒 Privacy
 
-```
-recovermyweb/
-├── manifest.json          # Extension configuration
-├── background.js          # Service worker (tab tracking)
-├── storage.js            # Storage utilities
-├── popup.html            # UI structure
-├── popup.js              # UI logic
-├── styles.css            # Styling
-├── icon.svg              # Icon source (convert to PNG)
-├── icon.png              # Extension icon (YOU NEED TO CREATE THIS)
-└── README.md             # This file
-```
+- **All data stored locally** in your browser
+- **No external servers** - nothing leaves your computer
+- **No tracking, no analytics** - we don't know you exist
+- **Open source** - inspect the code yourself
 
-## Technical Details
+## 🛠️ Technical Details
 
-### Permissions
+### Permissions Required
+- **`tabs`** - Read tab URLs and titles
+- **`storage`** - Save sessions locally
 
-- **tabs**: Access to tab information (URL, title, state)
-- **storage**: Persistent local storage for snapshots
+### Storage
+- Maximum 3 sessions saved
+- 7-day retention period
+- Auto-cleanup of old sessions
 
-### Storage Schema
+### What Gets Saved
+- Tab URLs
+- Tab titles
+- Tab order
+- Pinned status
+- Timestamp
 
-```typescript
-interface TabSnapshot {
-  id: string
-  url: string
-  title: string
-  index: number
-  pinned: boolean
-  timestamp: number
-}
+### What Doesn't Get Saved
+- Cookies or login sessions
+- Form data
+- Page content
+- Browsing history
 
-interface SessionSnapshot {
-  sessionId: string
-  windowId: number
-  tabs: TabSnapshot[]
-  closedAt: number
-}
-```
+## 🚧 Known Limitations
 
-### Data Retention
+- **Manual save only** - You must click "Save Current Session" before closing your window (auto-save on window close doesn't work reliably due to Chrome API limitations)
+- **Cannot restore `chrome://` URLs** - Chrome security prevents extensions from opening system pages
+- **Single session** - Only the most recent save is shown (though up to 3 are stored)
+- **No cloud sync** - Sessions are device-local only
 
-- Maximum 3 sessions stored
-- Maximum 7 days retention
-- Auto-cleanup on save
+## 🗺️ Roadmap
 
-### Security Features
+Future features under consideration:
+- [ ] Auto-save on window close (investigating workarounds)
+- [ ] Multiple session history
+- [ ] Selective tab restoration (checkboxes)
+- [ ] Keyboard shortcut (Ctrl+Shift+R)
+- [ ] Export/import sessions
+- [ ] Session naming
 
-- URL filtering (excludes chrome:// and chrome-extension://)
-- XSS prevention (HTML entity encoding)
-- No sensitive data storage (no form data, credentials)
+## 🤝 Contributing
 
-## Troubleshooting
+Issues and PRs welcome! This project was built to solve a real pain point - if you have ideas to make it better, let's hear them.
 
-### Extension Not Loading
+## 📄 License
 
-- Verify `icon.png` exists in directory
-- Check Chrome console for errors (`chrome://extensions/` → "Inspect views: service worker")
-- Ensure manifest.json is valid JSON
+MIT License - Use it, fork it, improve it.
 
-### Tabs Not Restoring
+## 🙏 Credits
 
-- Check if URLs are allowed (chrome:// URLs cannot be restored)
-- Verify snapshot exists (open popup to check)
-- Check background service worker logs
+Built out of frustration with losing incognito tabs one too many times.
 
-### Snapshot Not Saving
+---
 
-- Ensure incognito window has trackable tabs
-- Check storage quota: `chrome://settings/content/all?search=storage`
-- Verify extension has storage permission
-
-## Development
-
-### Debug Service Worker
-
-1. Go to `chrome://extensions/`
-2. Find RecoverMyWeb
-3. Click "Inspect views: service worker"
-4. Console shows all background logs
-
-### Debug Popup
-
-1. Click extension icon to open popup
-2. Right-click popup → "Inspect"
-3. DevTools opens for popup context
-
-### Clear Storage
-
-```javascript
-// In popup or background console:
-chrome.storage.local.clear()
-```
-
-## Known Limitations
-
-- Cannot restore `chrome://` or `chrome-extension://` URLs
-- Requires manual click to restore (no automatic restore)
-- Single session restoration (not full history)
-- No cloud sync (local storage only)
-
-## Future Enhancements
-
-- Multiple session history browser
-- Selective tab restoration (checkboxes)
-- Keyboard shortcut for restore
-- Export/import sessions
-- Cloud sync across devices
-
-## License
-
-MIT License - Feel free to modify and distribute
-
-## Version
-
-1.0.0 - Initial release
-
-## Support
-
-For issues or questions, please check:
-- Background service worker console for errors
-- Chrome extension documentation: https://developer.chrome.com/docs/extensions/
+**If this extension saved your tabs, give it a ⭐!**
