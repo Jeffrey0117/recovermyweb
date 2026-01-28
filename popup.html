@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecoverMyWeb</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>RecoverMyWeb</h1>
+      <p class="subtitle">Restore your incognito tabs</p>
+    </header>
+
+    <main id="main-content">
+      <!-- Loading state -->
+      <div id="loading-state" class="state">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+
+      <!-- No snapshot state -->
+      <div id="no-snapshot-state" class="state hidden">
+        <div class="icon">🔒</div>
+        <p class="message">No incognito session to restore</p>
+        <p class="hint">Save current incognito tabs manually</p>
+        <button id="save-now-btn" class="btn btn-primary">
+          Save Current Session
+        </button>
+      </div>
+
+      <!-- Snapshot available state -->
+      <div id="snapshot-state" class="state hidden">
+        <div class="session-info">
+          <div class="info-item">
+            <span class="label">Tabs:</span>
+            <span class="value" id="tab-count">0</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Closed:</span>
+            <span class="value" id="closed-time">-</span>
+          </div>
+        </div>
+
+        <button id="restore-btn" class="btn btn-primary">
+          Restore All Tabs
+        </button>
+
+        <button id="clear-btn" class="btn btn-secondary">
+          Clear Snapshot
+        </button>
+      </div>
+
+      <!-- Success state -->
+      <div id="success-state" class="state hidden">
+        <div class="icon success">✓</div>
+        <p class="message">Tabs restored successfully!</p>
+        <button id="close-btn" class="btn btn-secondary">Close</button>
+      </div>
+
+      <!-- Error state -->
+      <div id="error-state" class="state hidden">
+        <div class="icon error">⚠</div>
+        <p class="message" id="error-message">An error occurred</p>
+        <button id="retry-btn" class="btn btn-secondary">Try Again</button>
+      </div>
+    </main>
+
+    <footer>
+      <p class="version">v1.0.0</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

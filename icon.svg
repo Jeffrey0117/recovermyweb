@@ -1,0 +1,36 @@
+<!-- SVG Icon for RecoverMyWeb -->
+<!-- Convert this to PNG at 128x128, 48x48, and 16x16 using an online converter -->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="128" height="128" rx="24" fill="url(#gradient)"/>
+
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Incognito icon (glasses and hat) -->
+  <g transform="translate(64, 64)">
+    <!-- Hat -->
+    <ellipse cx="0" cy="-20" rx="35" ry="8" fill="white" opacity="0.9"/>
+
+    <!-- Glasses -->
+    <g transform="translate(0, 5)">
+      <!-- Left lens -->
+      <circle cx="-15" cy="0" r="12" fill="white" opacity="0.9"/>
+      <!-- Right lens -->
+      <circle cx="15" cy="0" r="12" fill="white" opacity="0.9"/>
+      <!-- Bridge -->
+      <rect x="-5" y="-2" width="10" height="4" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- Recovery arrow -->
+    <g transform="translate(0, 25)">
+      <path d="M -8,-5 L 8,-5 L 8,-10 L 18,0 L 8,10 L 8,5 L -8,5 Z"
+            fill="white" opacity="0.9"/>
+    </g>
+  </g>
+</svg>
