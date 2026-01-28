@@ -4,7 +4,9 @@
 
 A Chrome extension that saves and restores your incognito window tabs - because accidentally closing that window with 20+ research tabs shouldn't ruin your day.
 
-![RecoverMyWeb](icon.png)
+<p align="center">
+  <img src="icon.png" alt="RecoverMyWeb Icon" width="200"/>
+</p>
 
 ## 😫 The Problem
 
